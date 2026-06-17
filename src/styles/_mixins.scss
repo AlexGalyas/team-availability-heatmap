@@ -1,0 +1,22 @@
+@use "variables" as v;
+
+// Hide content visually while keeping it available to assistive tech.
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Visible keyboard focus ring. Use on interactive elements.
+@mixin focus-visible {
+  &:focus-visible {
+    outline: v.$focus-ring-width solid v.$focus-ring-color;
+    outline-offset: v.$focus-ring-offset;
+  }
+}

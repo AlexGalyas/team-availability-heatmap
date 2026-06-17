@@ -1,0 +1,27 @@
+@use "../../../styles/variables" as v;
+@use "../../../styles/mixins" as m;
+
+.switcher {
+  display: flex;
+  align-items: center;
+  gap: v.$space-sm;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.select {
+  flex: 1;
+  min-width: 0;
+  padding: v.$space-xs v.$space-sm;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+
+  @include m.focus-visible;
+}

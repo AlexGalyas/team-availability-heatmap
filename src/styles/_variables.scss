@@ -1,0 +1,26 @@
+// Shared design tokens. No magic numbers elsewhere — reference these.
+
+// Spacing scale
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+
+// Availability grid geometry
+$cell-size: 40px;
+$grid-gap: 2px;
+
+// Heatmap: single hue, intensity expressed via alpha (count / max)
+$heat-hue: 152;
+$heat-saturation: 60%;
+$heat-lightness: 45%;
+
+// Focus ring (paired with the focus-visible mixin)
+$focus-ring-color: #2563eb;
+$focus-ring-width: 2px;
+$focus-ring-offset: 2px;
+
+// Breakpoints
+$bp-tablet: 768px;
+$bp-desktop: 1024px;

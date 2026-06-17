@@ -1,0 +1,79 @@
+@use "../../../styles/variables" as v;
+@use "../../../styles/mixins" as m;
+
+.form {
+  display: grid;
+  gap: v.$space-sm;
+  padding: v.$space-md;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+}
+
+.heading {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.field {
+  display: grid;
+  gap: v.$space-xs;
+}
+
+.label {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.select {
+  padding: v.$space-xs v.$space-sm;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+
+  @include m.focus-visible;
+
+  &[aria-invalid="true"] {
+    border-color: #842029;
+  }
+}
+
+.error {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #842029;
+}
+
+.submit {
+  margin-top: v.$space-xs;
+  padding: v.$space-sm v.$space-md;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: v.$focus-ring-color;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+
+  @include m.focus-visible;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+}
+
+.statusError {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #842029;
+}
+
+.statusSuccess {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #0f5132;
+}

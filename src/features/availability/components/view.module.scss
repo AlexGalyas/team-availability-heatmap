@@ -1,0 +1,34 @@
+@use "../../../styles/variables" as v;
+
+.view {
+  padding: v.$space-lg;
+}
+
+.title {
+  margin: 0 0 v.$space-md;
+}
+
+.body {
+  display: grid;
+  gap: v.$space-lg;
+
+  @media (min-width: v.$bp-desktop) {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    align-items: start;
+  }
+}
+
+.main {
+  min-width: 0;
+}
+
+.sidebar {
+  display: grid;
+  gap: v.$space-sm;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+}

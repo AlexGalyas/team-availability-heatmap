@@ -1,0 +1,122 @@
+@use "../../../styles/variables" as v;
+@use "../../../styles/mixins" as m;
+
+.grid {
+  display: grid;
+  grid-template-columns: auto repeat(5, minmax(v.$cell-size, 1fr));
+  gap: v.$grid-gap;
+  align-items: stretch;
+  max-width: 720px;
+}
+
+// Each row spreads its children into the parent grid tracks.
+.row {
+  display: contents;
+}
+
+.corner,
+.columnHeader,
+.rowHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: v.$space-xs;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.rowHeader {
+  justify-content: flex-end;
+  white-space: nowrap;
+}
+
+// The gridcell container occupies one grid track; the button inside is the widget.
+.cell {
+  display: flex;
+}
+
+.cellButton {
+  flex: 1;
+  appearance: none;
+  height: v.$cell-size;
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+  // Drag-paint: suppress touch scrolling and text selection while dragging across cells.
+  touch-action: none;
+  user-select: none;
+  // Emit as a raw string so Sass passes it through instead of evaluating hsl()
+  // (its color function rejects the var(--heat-alpha) argument).
+  background-color: #{"hsl(#{v.$heat-hue} #{v.$heat-saturation} #{v.$heat-lightness} / var(--heat-alpha, 0))"};
+  transition: box-shadow 0.1s ease;
+
+  @include m.focus-visible;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+// "My slot" marker drawn over the heat fill.
+.cellButtonMine {
+  box-shadow: inset 0 0 0 3px v.$focus-ring-color;
+}
+
+// Cells inside the active drag rectangle: dashed outline showing what's being painted/erased
+// (paired with the mine marker, whose presence reflects the previewed result).
+.cellButtonPreview {
+  outline: v.$focus-ring-width dashed v.$focus-ring-color;
+  outline-offset: -#{v.$focus-ring-width};
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: v.$space-xs;
+  margin-bottom: v.$space-md;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.swatch {
+  width: v.$space-md;
+  height: v.$space-md;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #{"hsl(#{v.$heat-hue} #{v.$heat-saturation} #{v.$heat-lightness} / var(--heat-alpha, 0))"};
+}
+
+.skeleton {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(v.$cell-size, 1fr));
+  gap: v.$grid-gap;
+  max-width: 720px;
+}
+
+.skeletonCell {
+  height: v.$cell-size;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #eee, #f5f5f5, #eee);
+}
+
+.empty,
+.error {
+  padding: v.$space-lg;
+  border: 1px dashed #ccc;
+  border-radius: 6px;
+  color: #555;
+  max-width: 720px;
+}
+
+.error {
+  border-color: #e0b4b4;
+  color: #842029;
+}
+
+.retry {
+  margin-top: v.$space-sm;
+
+  @include m.focus-visible;
+}
